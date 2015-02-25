@@ -1,77 +1,32 @@
 'use strict';
 
 angular.module('teamChurroApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, Categories) {
 
-    $scope.categories = [
-      {
-        id: 'email',
-        name: 'Email',
-        vendors: [
-          {id: 'fishbowl', name: 'Fishbowl', image: ''},
-          {id: 'exacttarget', name: 'Exact Target', image: ''},
-          {id: 'mailchimp', name: 'MailChimp', image: ''},
-          {id: 'constant_contact', name: 'Constant Contact', image: ''}
-        ]
-      },
-
-      {
-        id: 'loyalty',
-        name: 'Loyalty',
-        vendors: [
-          {id: 'fishbowl', name: 'Fishbowl', image: ''},
-          {id: 'exacttarget', name: 'Exact Target', image: ''},
-          {id: 'mailchimp', name: 'MailChimp', image: ''},
-          {id: 'constant_contact', name: 'Constant Contact', image: ''}
-        ]
-      },
-
-      {
-        id: 'pos',
-        name: 'POS',
-        vendors: [
-          {id: 'fishbowl', name: 'Fishbowl', image: ''},
-          {id: 'exacttarget', name: 'Exact Target', image: ''},
-          {id: 'mailchimp', name: 'MailChimp', image: ''},
-          {id: 'constant_contact', name: 'Constant Contact', image: ''}
-        ]
-      },
-
-      {
-        id: 'data_insights',
-        name: 'Data Insights',
-        vendors: [
-          {id: 'fishbowl', name: 'Fishbowl', image: ''},
-          {id: 'exacttarget', name: 'Exact Target', image: ''},
-          {id: 'exacttarget', name: 'MailChimp', image: ''},
-          {id: 'constant_contact', name: 'Constant Contact', image: ''}
-        ]
-      }
-    ];
-
-    $scope.vendors = [
-      {id: 'fishbowl', name: 'Fishbowl', image: ''},
-      {id: 'exacttarget', name: 'Exact Target', image: ''},
-      {id: 'mailchimp', name: 'MailChimp', image: ''},
-      {id: 'constant_contact', name: 'Constant Contact', image: ''}
-    ];
-
-    $scope.selections = [
-      {category:'email', vendor: 'fishbowl'},
-      {category:'loyalty', vendor: 'exacttarget'},
-      {category:'pos', vendor: 'mailchimp'},
-      {category:'data_insights', vendor: 'constant_contact'}
-    ];
+    $scope.categories = Categories.get();
+    $scope.defaultSelections = Categories.default();
+    $scope.newVendors = [];
 
     $scope.toggleVendor = function(category, vendor) {
       vendor.selected = !vendor.selected;
-
-      //$scope.selections.push(vendor);
-      console.log(vendor)
     };
 
+    $scope.selectNone = function (category) {
+      _.map(category.vendors, function (vendor) {
+        vendor.selected = false;
+        return vendor;
+      })
+    };
+
+    $scope.submitNewVendor = function (category, vendor) {
+      if(vendor) {
+        category.vendors.push({id: 'new', name: vendor, selected: true});
+      }
+    };
+
+
     (function () {
-      processSelections($scope.selections, $scope.categories);
+      processSelections($scope.defaultSelections, $scope.categories);
     })();
   });
 

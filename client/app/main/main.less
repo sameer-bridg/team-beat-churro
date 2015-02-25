@@ -63,12 +63,11 @@ table.vendors {
       font-size:1.2em;
       font-weight:100;
       padding: 0;
-      transition:0.4s all;
       color:@vendor-color;
 
       &.vendor-row {
         cursor: pointer;
-        opacity:0.3;
+        opacity:0.2;
         text-align:center;
 
         div {
@@ -77,13 +76,39 @@ table.vendors {
           padding:15px;
         }
 
+        &:hover {
+          opacity:0.4;
+        }
+
         &.selected {
           background:#fff;
           opacity:1;
+
+          &:hover {
+            opacity:1;
+          }
         }
+      }
+
+      input {
+        border:1px solid #eee;
+        border-radius: 4px;
+        margin-right:5px;
+        width:100px;
+        font-size:0.9em;
+        padding:4px;
+      }
+
+      .btn-default {
+        background: #F2F2F2;
+        color: #949494;
+        font-size: 0.7em;
+        padding: 4px 20px;
+        border: 0;
+        line-height: 20px;
 
         &:hover {
-          background:#eee;
+          background: #eee;
         }
       }
     }
