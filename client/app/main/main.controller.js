@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('teamChurroApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope) {
 
     $scope.categories = [
       {
@@ -43,17 +43,28 @@ angular.module('teamChurroApp')
         vendors: [
           {id: 'fishbowl', name: 'Fishbowl', image: ''},
           {id: 'exacttarget', name: 'Exact Target', image: ''},
-          {id: 'mailchimp', name: 'MailChimp', image: ''},
+          {id: 'exacttarget', name: 'MailChimp', image: ''},
           {id: 'constant_contact', name: 'Constant Contact', image: ''}
         ]
       }
     ];
 
-    $scope.selections = [
-      {category:'email', vendor: 'fishbowl'},
-      {category:'loyalty', vendor: 'fishbowl'},
-      {category:'email', vendor: 'fishbowl'},
-      {category:'email', vendor: 'fishbowl'}
+    $scope.vendors = [
+      {id: 'fishbowl', name: 'Fishbowl', image: ''},
+      {id: 'exacttarget', name: 'Exact Target', image: ''},
+      {id: 'mailchimp', name: 'MailChimp', image: ''},
+      {id: 'constant_contact', name: 'Constant Contact', image: ''}
     ];
 
+    $scope.selections = [
+      {category:'email', vendor: 'fishbowl'},
+      {category:'loyalty', vendor: 'exacttarget'},
+      {category:'email', vendor: 'exacttarget'},
+      {category:'email', vendor: 'constant_contact'}
+    ];
+
+    $scope.selectVendor = function(vendor) {
+      vendor.selected = true;
+      $scope.selections.push(vendor);
+    };
   });

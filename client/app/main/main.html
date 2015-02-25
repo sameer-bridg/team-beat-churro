@@ -7,31 +7,33 @@
 
       <table class="table vendors">
         <colgroup>
+          <col style="width:15%"/>
           <col style="width:14%"/>
           <col style="width:14%"/>
           <col style="width:14%"/>
           <col style="width:14%"/>
-          <col style="width:14%"/>
-          <col style="width:14%"/>
-          <col style="width:14%"/>
+          <col style="width:50px"/>
+          <col style="width:50px"/>
         </colgroup>
         <tr ng-repeat="category in categories">
           <td>{{category.name}}</td>
-          <td ng-repeat="vendor in category.vendors">
-            {{vendor.name}}
+          <td ng-repeat="vendor in category.vendors" class="vendor-row" ng-class="{selected: vendor.selected}">
+            <div ng-click="selectVendor(category.id, vendor.id)">
+              {{vendor.name}}
+            </div>
           </td>
           <td><a class="btn btn-default" href="">Other</a></td>
           <td><a class="btn btn-default" href="">None</a></td>
         </tr>
       </table>
+
+      <pre>{{selections | json}}</pre>
     </div>
   </div>
 </div>
 
 <footer class="footer">
   <div class="container">
-      <p>Angular Fullstack v2.0.13 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+    &copy Bridg 2015
   </div>
 </footer>
