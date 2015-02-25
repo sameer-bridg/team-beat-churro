@@ -59,12 +59,30 @@ angular.module('teamChurroApp')
     $scope.selections = [
       {category:'email', vendor: 'fishbowl'},
       {category:'loyalty', vendor: 'exacttarget'},
-      {category:'email', vendor: 'exacttarget'},
-      {category:'email', vendor: 'constant_contact'}
+      {category:'pos', vendor: 'mailchimp'},
+      {category:'data_insights', vendor: 'constant_contact'}
     ];
 
-    $scope.selectVendor = function(vendor) {
-      vendor.selected = true;
-      $scope.selections.push(vendor);
+    $scope.toggleVendor = function(category, vendor) {
+      vendor.selected = !vendor.selected;
+
+      //$scope.selections.push(vendor);
+      console.log(vendor)
     };
+
+    (function () {
+      processSelections($scope.selections, $scope.categories);
+    })();
   });
+
+
+function processSelections(selections, categories) {
+  _.each(selections, function (selection) {
+    var category = _.find(categories, {id: selection.category});
+    if(category) {
+      var vendor = _.find(category.vendors, {id: selection.vendor});
+      vendor.selected = true;
+    }
+  });
+}
+

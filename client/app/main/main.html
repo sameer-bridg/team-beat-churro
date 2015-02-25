@@ -18,7 +18,7 @@
         <tr ng-repeat="category in categories">
           <td>{{category.name}}</td>
           <td ng-repeat="vendor in category.vendors" class="vendor-row" ng-class="{selected: vendor.selected}">
-            <div ng-click="selectVendor(category.id, vendor.id)">
+            <div ng-click="toggleVendor(category, vendor)">
               {{vendor.name}}
             </div>
           </td>
