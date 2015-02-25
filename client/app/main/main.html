@@ -17,9 +17,11 @@
         </colgroup>
         <tr ng-repeat="category in categories">
           <td>{{category.name}}</td>
-          <td ng-repeat="vendor in vendors">
+          <td ng-repeat="vendor in category.vendors">
             {{vendor.name}}
           </td>
+          <td><a class="btn btn-default" href="">Other</a></td>
+          <td><a class="btn btn-default" href="">None</a></td>
         </tr>
       </table>
     </div>
