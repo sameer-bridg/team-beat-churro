@@ -19,19 +19,19 @@
           <td>{{category.name}}</td>
           <td ng-repeat="vendor in category.vendors" class="vendor-row" ng-class="{selected: vendor.selected}">
             <div ng-click="toggleVendor(category, vendor)">
-              <span ng-if="!vendor.image" ng-bind="vendor.name"></span>
+              <div ng-if="!vendor.image" ng-bind="vendor.name"></div>
               <img ng-src="{{vendor.image}}" alt=""/>
             </div>
           </td>
           <td>
-            <a ng-show="!other[$index]"
+            <a ng-if="!other[$index]"
                class="btn btn-default"
                href
                ng-click="other[$index] = !other[$index]">
               Other
             </a>
 
-            <div ng-show="other[$index]">
+            <div ng-if="other[$index]">
               <form ng-submit="submitNewVendor(category, v[$index]);  other[$index] = false">
                 <input type="text" ng-model="v[$index]" />
               </form>

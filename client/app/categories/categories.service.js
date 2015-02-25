@@ -14,7 +14,6 @@ angular.module('teamChurroApp')
           {id: 'constantcontact', name: 'Constant Contact', image: 'assets/images/logos/constantcontact.png'}
         ]
       },
-
       {
         id: 'loyalty',
         name: 'Loyalty',
@@ -24,7 +23,6 @@ angular.module('teamChurroApp')
           {id: 'fivestars', name: 'Fivestars', image: 'assets/images/logos/fivestars.png'}
         ]
       },
-
       {
         id: 'pos',
         name: 'POS',
@@ -34,7 +32,6 @@ angular.module('teamChurroApp')
           {id: 'positouch', name: 'Positouch', image: 'assets/images/logos/positouch.png'}
         ]
       },
-
       {
         id: 'data_insights',
         name: 'Data Insights',
@@ -55,7 +52,10 @@ angular.module('teamChurroApp')
 
 
     var defaultSelections = [
-      {category:'email', vendor: 'fishbowl'}
+      {category:'email', vendor: 'fishbowl'},
+      {category:'loyalty', vendor: 'punchh'},
+      {category:'pos', vendor: 'micros'},
+      {category:'data_insights', vendor: 'acxiom'}
     ];
 
 
