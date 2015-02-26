@@ -5,7 +5,12 @@ angular.module('teamChurroApp')
 
     $scope.categories = Categories.get();
     $scope.defaultSelections = Categories.default();
+
+    $scope.user = {
+      companyName: ''
+    };
     $scope.newVendors = [];
+    $scope.MAX_COLUMNS = 5;
 
     $scope.toggleVendor = function(category, vendor) {
       vendor.selected = !vendor.selected;
@@ -24,6 +29,10 @@ angular.module('teamChurroApp')
       }
     };
 
+
+    $scope.range = function(n) {
+      return new Array(n);
+    };
 
     (function () {
       processSelections($scope.defaultSelections, $scope.categories);

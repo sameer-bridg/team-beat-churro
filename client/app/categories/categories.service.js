@@ -36,11 +36,11 @@ angular.module('teamChurroApp')
         id: 'data_insights',
         name: 'Data Insights',
         vendors: [
-          {id: 'beanstalk', name: 'Beanstalk', image: ''},
+          {id: 'beanstalk', name: 'Beanstalk', image: 'assets/images/logos/beanstalk.png'},
           {id: 'marketingvitals', name: 'Marketing Vitals', image: 'assets/images/logos/marketingvitals.png'},
           {id: 'acxiom', name: 'Acxiom', image: 'assets/images/logos/acxiom.png'},
-          {id: 'zipscene', name: 'ZipScene', image: ''},
-          {id: 'dunnhumby', name: 'DunnHumby', image: ''}
+          {id: 'zipscene', name: 'ZipScene', image: 'assets/images/logos/zipscene.png'},
+          {id: 'dunnhumby', name: 'DunnHumby', image: 'assets/images/logos/dunnhumby.png'},
         ]
       }
     ];
