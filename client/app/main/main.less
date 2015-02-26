@@ -33,6 +33,20 @@ body {
     border-top: 1px solid #E5E5E5;
 }
 
+.fa-check-circle {
+  color: #6EC572;
+}
+
+th {
+  font-weight: 500;
+  font-size: 12px;
+  padding-bottom: 2px !important;
+}
+
+.table-name {
+  font-size: 25px;
+}
+
 .logo {
   height:30px;
 }
@@ -40,22 +54,92 @@ body {
 .report {
   background: #f8f8f8;
   width: 100%;
+
+  color: #444444;
+  .btn {
+    margin-top: 15px;
+  }
+  .report-title {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 30px;
+  }
+  .grade {
+    text-align: center;
+    font-size: 30px;
+    vertical-align: super;
+    margin-bottom: 30px;
+    margin-top: 20px;
+
+    .align-super {
+      vertical-align: super;
+    }
+
+    .actual-grade {
+      font-size: 60px;
+      color: orange;
+    }
+  }
+  .btn-grey {
+    background: #CCCCCC;
+    color: #FFFFFF;
+    margin-right: 5PX;
+  }
+  .btn-blue {
+    background: #6AB5BB;
+    color: #FFFFFF;
+  }
 }
 
 .container.vendor-grid {
 
   h2 {
     font-size:1.5em;
-    margin-bottom:30px;
+    margin-bottom:40px;
   }
 }
 
-table {
+table.vendors {
+  @vendor-color: #888;
   tr {
+
+    &:first-child {
+      td {
+        border-top:0;
+      }
+    }
+
     td {
+      border-color:#eee;
+      text-align:left;
+      vertical-align: middle;
       font-size:1.2em;
       font-weight:100;
-      padding: 15px;
+      padding: 0;
+      transition:0.4s all;
+      color:@vendor-color;
+
+      &.vendor-row {
+        cursor: pointer;
+        opacity:0.3;
+        text-align:center;
+
+        div {
+          width:100%;
+          height:100%;
+          padding:15px;
+        }
+
+        &.selected {
+          background:#fff;
+          opacity:1;
+        }
+
+        &:hover {
+          background:#eee;
+        }
+      }
     }
   }
 }
+

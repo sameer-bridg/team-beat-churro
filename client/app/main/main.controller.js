@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('teamChurroApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope) {
 
     $scope.categories = [
       {
@@ -43,17 +43,46 @@ angular.module('teamChurroApp')
         vendors: [
           {id: 'fishbowl', name: 'Fishbowl', image: ''},
           {id: 'exacttarget', name: 'Exact Target', image: ''},
-          {id: 'mailchimp', name: 'MailChimp', image: ''},
+          {id: 'exacttarget', name: 'MailChimp', image: ''},
           {id: 'constant_contact', name: 'Constant Contact', image: ''}
         ]
       }
     ];
 
-    $scope.selections = [
-      {category:'email', vendor: 'fishbowl'},
-      {category:'loyalty', vendor: 'fishbowl'},
-      {category:'email', vendor: 'fishbowl'},
-      {category:'email', vendor: 'fishbowl'}
+    $scope.vendors = [
+      {id: 'fishbowl', name: 'Fishbowl', image: ''},
+      {id: 'exacttarget', name: 'Exact Target', image: ''},
+      {id: 'mailchimp', name: 'MailChimp', image: ''},
+      {id: 'constant_contact', name: 'Constant Contact', image: ''}
     ];
 
+    $scope.selections = [
+      {category:'email', vendor: 'fishbowl'},
+      {category:'loyalty', vendor: 'exacttarget'},
+      {category:'pos', vendor: 'mailchimp'},
+      {category:'data_insights', vendor: 'constant_contact'}
+    ];
+
+    $scope.toggleVendor = function(category, vendor) {
+      vendor.selected = !vendor.selected;
+
+      //$scope.selections.push(vendor);
+      console.log(vendor)
+    };
+
+    (function () {
+      processSelections($scope.selections, $scope.categories);
+    })();
   });
+
+
+function processSelections(selections, categories) {
+  _.each(selections, function (selection) {
+    var category = _.find(categories, {id: selection.category});
+    if(category) {
+      var vendor = _.find(category.vendors, {id: selection.vendor});
+      vendor.selected = true;
+    }
+  });
+}
+
