@@ -68,7 +68,15 @@
       <div class="grade">
         <span class="align-super">Your Grade is</span>
         <span class="actual-grade">{{grade}}</span>
-        <div ng-if="grade">{{grade_text}}</div>
+        <div class="grade-post-text" ng-if="grade == 'A-'">{{grade_A_minus_text}}</div>
+        <div class="grade-post-text" ng-if="grade == 'B+'">{{grade_B_plus_text}}</div>
+        <div class="grade-post-text" ng-if="grade == 'B'">{{grade_B_text}}</div>
+        <div class="grade-post-text" ng-if="grade == 'B-'">{{grade_B_minus_text}}</div>
+        <div class="grade-post-text" ng-if="grade == 'C+'">{{grade_C_plus_text}}</div>
+        <div class="grade-post-text" ng-if="grade == 'C'">{{grade_C_text}}</div>
+        <div class="grade-post-text" ng-if="grade == 'C-'">{{grade_C_minus_text}}</div>
+        <div class="grade-post-text" ng-if="grade == 'D'">{{grade_D_text}}</div>
+        <div class="grade-post-text" ng-if="grade == 'F'">{{grade_F_text}}</div>
       </div>
     </div>
     <div class="row">
