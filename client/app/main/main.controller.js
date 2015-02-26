@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('teamChurroApp')
-  .controller('MainCtrl', function ($scope, Categories) {
+  .controller('MainCtrl', function ($scope, Categories, Dynamo) {
 
     $scope.categories = Categories.get();
     $scope.defaultSelections = Categories.default();
+
 
     $scope.user = {
       companyName: ''
@@ -84,8 +85,44 @@ angular.module('teamChurroApp')
         neg: "Real-time ROI reporting would allow you to connect each campaign a real sales result."}
     ];
 
+
+    $scope.saveCompanyData = function () {
+
+      if($scope.user.companyName) {
+        var vendorMap = _($scope.categories).map(function (category) {
+          var v = _(category.vendors)
+              .filter({selected:true})
+              .map(function (vendor) {
+                return {category: category.id, vendor: vendor.id};
+              })
+              .value();
+          console.log(v);
+          return v;
+        }).flatten()
+          .pluck('id')
+          .value();
+
+        Dynamo.put($scope.user.companyName, vendorMap)
+      }
+
+    };
+
+    $scope.submitCompanyName = function (name) {
+      $scope.user.companyName = name;
+
+      console.log(Categories.featureMap($scope.categories));
+
+      Dynamo.get(name).then(function (results) {
+        if(results) {
+          $scope.defaultSelections = results;
+          processSelections($scope.defaultSelections, $scope.categories);
+        }
+      })
+    };
+
     (function () {
       processSelections($scope.defaultSelections, $scope.categories);
+
     })();
   });
 

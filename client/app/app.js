@@ -12,5 +12,6 @@ angular.module('teamChurroApp', [
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
-  }).run(function ($rootScope) {
+  }).run(function ($rootScope, Dynamo) {
+    Dynamo.init();
   });

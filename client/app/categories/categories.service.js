@@ -26,7 +26,7 @@ angular.module('teamChurroApp')
            features: ['loyalty_tracking', 'coupons_rewards', 'customer_db_building', 'segmentation', 'pos']},
           {id: 'punchh', name: 'Punchh', image: 'assets/images/logos/punchh.png',
            features: ['loyalty_tracking', 'coupons_rewards']},
-          {id: 'givex', name: 'Givex', image: 'TODO',
+          {id: 'givex', name: 'Givex', image: 'assets/images/logos/givex.png',
            features: ['loyalty_tracking', 'coupons_rewards', 'customer_db_building', 'segmentation', 'pos']}
         ]
       },
@@ -47,15 +47,17 @@ angular.module('teamChurroApp')
         name: 'Data Insights',
         vendors: [
           {id: 'beanstalk', name: 'Beanstalk', image: 'assets/images/logos/beanstalk.png',
-           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']},
+           features: ['customer_db_building']},
           {id: 'marketingvitals', name: 'Marketing Vitals', image: 'assets/images/logos/marketingvitals.png',
-           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']},
+           features: ['predict', 'pos', 'roi']},
           {id: 'acxiom', name: 'Acxiom', image: 'assets/images/logos/acxiom.png',
-           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']},
+           features: ['segmentation']},
           {id: 'zipscene', name: 'ZipScene', image: 'assets/images/logos/zipscene.png',
-           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']},
+           features: ['email_sending', 'campaign_automation', 'segmentation', 'roi']},
           {id: 'dunnhumby', name: 'DunnHumby', image: 'assets/images/logos/dunnhumby.png',
-           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']}
+           features: ['segmentation', 'pos', 'roi']},
+          {id: 'ansira', name: 'Ansira', image: 'assets/images/logos/ansira.png',
+           features: ['pos', 'roi']}
         ]
       }
     ];
@@ -115,6 +117,41 @@ angular.module('teamChurroApp')
 
       default: function () {
         return defaultSelections;
+      },
+
+      featuresForVendor: function (vendor) {
+        var f = _(vendor.features)
+          .map(function (featureStr) {
+            var feature = _.find(features, {id: featureStr});
+            if(!_.isEmpty(feature)) {
+              if(vendor.selected) {
+                feature.selected = true;
+              }
+              return feature;
+            }
+            return null;
+          })
+          .compact()
+          .value();
+
+        return f;
+      },
+
+      featureMap: function (categories) {
+
+        var self = this;
+        var f =
+          _(categories)
+            .map(function (category) {
+              return category.vendors;
+            })
+            .flatten()
+            .map(self.featuresForVendor)
+            .flatten()
+            .unique()
+            .value();
+
+        return f;
       }
 
     };
