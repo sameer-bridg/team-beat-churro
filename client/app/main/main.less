@@ -106,6 +106,21 @@ th {
   }
 }
 
+.company-info {
+
+  input {
+    margin:0;
+    padding:20px;
+    &:active, &:hover, &:focus, {
+      outline: none;
+      outline-width: 0;
+    }
+  }
+  button {
+    padding:10px 20px;
+  }
+}
+
 table.vendors {
   @vendor-color: #888;
   tr {

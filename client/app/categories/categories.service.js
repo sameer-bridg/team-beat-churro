@@ -98,7 +98,7 @@ angular.module('teamChurroApp')
           neg: "POS software will give you access to all of your customer transaction data."},
         { id: "roi", name: "ROI Reports on Marketing Campaigns", weight: 2,
           pos: "You can connect each of your marketing campaigns to a real sales result.",
-          neg: "Real-time ROI reporting would allow you to connect each campaign a real sales result."} 
+          neg: "Real-time ROI reporting would allow you to connect each campaign a real sales result."}
     ];
 
     var defaultSelections = [
@@ -117,6 +117,41 @@ angular.module('teamChurroApp')
 
       default: function () {
         return defaultSelections;
+      },
+
+      featuresForVendor: function (vendor) {
+        var f = _(vendor.features)
+          .map(function (featureStr) {
+            var feature = _.find(features, {id: featureStr});
+            if(!_.isEmpty(feature)) {
+              if(vendor.selected) {
+                feature.selected = true;
+              }
+              return feature;
+            }
+            return null;
+          })
+          .compact()
+          .value();
+
+        return f;
+      },
+
+      featureMap: function (categories) {
+
+        var self = this;
+        var f =
+          _(categories)
+            .map(function (category) {
+              return category.vendors;
+            })
+            .flatten()
+            .map(self.featuresForVendor)
+            .flatten()
+            .unique()
+            .value();
+
+        return f;
       }
 
     };
