@@ -8,39 +8,54 @@ angular.module('teamChurroApp')
         id: 'email',
         name: 'Email',
         vendors: [
-          {id: 'fishbowl', name: 'Fishbowl', image: 'assets/images/logos/fishbowl.png', features:['email_sending']},
-          {id: 'exacttarget', name: 'Exact Target', image: 'assets/images/logos/exacttarget.png'},
-          {id: 'mailchimp', name: 'MailChimp', image: 'assets/images/logos/mailchimp.png'},
-          {id: 'constantcontact', name: 'Constant Contact', image: 'assets/images/logos/constantcontact.png'}
+          {id: 'fishbowl', name: 'Fishbowl', image: 'assets/images/logos/fishbowl.png',
+           features:['email_sending', 'personalized_messaging', 'campaign_automation', 'customer_db_building']},
+          {id: 'exacttarget', name: 'Exact Target', image: 'assets/images/logos/exacttarget.png',
+           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'segmentation']},
+          {id: 'mailchimp', name: 'MailChimp', image: 'assets/images/logos/mailchimp.png',
+           features: ['email_sending', 'ab_testing']},
+          {id: 'constantcontact', name: 'Constant Contact', image: 'assets/images/logos/constantcontact.png',
+           features: ['email_sending']}
         ]
       },
       {
         id: 'loyalty',
         name: 'Loyalty',
         vendors: [
-          {id: 'punchh', name: 'Punchh', image: 'assets/images/logos/punchh.png'},
-          {id: 'paytronix', name: 'Paytronix', image: 'assets/images/logos/paytronix.png'},
-          {id: 'fivestars', name: 'Fivestars', image: 'assets/images/logos/fivestars.png'}
+          {id: 'paytronix', name: 'Paytronix', image: 'assets/images/logos/paytronix.png',
+           features: ['loyalty_tracking', 'coupons_rewards', 'customer_db_building', 'segmentation', 'pos']},
+          {id: 'punchh', name: 'Punchh', image: 'assets/images/logos/punchh.png',
+           features: ['loyalty_tracking', 'coupons_rewards']},
+          {id: 'givex', name: 'Givex', image: 'TODO',
+           features: ['loyalty_tracking', 'coupons_rewards', 'customer_db_building', 'segmentation', 'pos']}
         ]
       },
       {
         id: 'pos',
         name: 'POS',
         vendors: [
-          {id: 'micros', name: 'Micros', image: 'assets/images/logos/micros.png'},
-          {id: 'aloha', name: 'Aloha', image: 'assets/images/logos/ncraloha.png'},
-          {id: 'positouch', name: 'Positouch', image: 'assets/images/logos/positouch.png'}
+          {id: 'aloha', name: 'Aloha', image: 'assets/images/logos/ncraloha.png',
+           features: ['roi']},
+          {id: 'micros', name: 'Micros', image: 'assets/images/logos/micros.png',
+           features: ['roi']},
+          {id: 'positouch', name: 'Positouch', image: 'assets/images/logos/positouch.png',
+           features: []}
         ]
       },
       {
         id: 'data_insights',
         name: 'Data Insights',
         vendors: [
-          {id: 'beanstalk', name: 'Beanstalk', image: 'assets/images/logos/beanstalk.png'},
-          {id: 'marketingvitals', name: 'Marketing Vitals', image: 'assets/images/logos/marketingvitals.png'},
-          {id: 'acxiom', name: 'Acxiom', image: 'assets/images/logos/acxiom.png'},
-          {id: 'zipscene', name: 'ZipScene', image: 'assets/images/logos/zipscene.png'},
-          {id: 'dunnhumby', name: 'DunnHumby', image: 'assets/images/logos/dunnhumby.png'},
+          {id: 'beanstalk', name: 'Beanstalk', image: 'assets/images/logos/beanstalk.png',
+           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']},
+          {id: 'marketingvitals', name: 'Marketing Vitals', image: 'assets/images/logos/marketingvitals.png',
+           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']},
+          {id: 'acxiom', name: 'Acxiom', image: 'assets/images/logos/acxiom.png',
+           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']},
+          {id: 'zipscene', name: 'ZipScene', image: 'assets/images/logos/zipscene.png',
+           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']},
+          {id: 'dunnhumby', name: 'DunnHumby', image: 'assets/images/logos/dunnhumby.png',
+           features: ['email_sending', 'ab_testing', 'personalized_messaging', 'campaign_automation', 'loyalty_tracking', 'coupons_rewards', 'website_customization', 'customer_db_building', 'segmentation', 'predict', 'pos', 'roi']}
         ]
       }
     ];
@@ -85,10 +100,10 @@ angular.module('teamChurroApp')
     ];
 
     var defaultSelections = [
+      {category:'data_insights', vendor: 'TODO'},
       {category:'email', vendor: 'fishbowl'},
-      {category:'loyalty', vendor: 'punchh'},
-      {category:'pos', vendor: 'micros'},
-      {category:'data_insights', vendor: 'acxiom'}
+      {category:'loyalty', vendor: 'paytronix'},
+      {category:'pos', vendor: 'aloha'}
     ];
 
 
