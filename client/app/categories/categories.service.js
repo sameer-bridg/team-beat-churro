@@ -126,6 +126,8 @@ angular.module('teamChurroApp')
             if(!_.isEmpty(feature)) {
               if(vendor.selected) {
                 feature.selected = true;
+              } else {
+                feature.selected = false;
               }
               return feature;
             }

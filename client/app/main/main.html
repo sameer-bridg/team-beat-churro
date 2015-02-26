@@ -94,16 +94,16 @@
           </colgroup>
           <thead>
             <tr>
-              <th class="table-name">Email</th>
+              <th class="table-name">Features</th>
               <th>Status</th>
               <th>Remarks</th>
             </tr>
           </thead>
           <tr ng-repeat="feature in features">
             <td>{{feature.name}}</td>
-            <td><i ng-if="feature.selected == true" class="fa fa-check-circle"></i></td>
-            <td ng-if="feature.selected == true">{{feature.pos}}</td>
-            <td class="neg" ng-if="!feature.selected == true">{{feature.neg}}</td>
+            <td><i ng-if="feature.selected" class="fa fa-check-circle"></i></td>
+            <td ng-if="feature.selected">{{feature.pos}}</td>
+            <td class="neg" ng-if="feature.selected === false">{{feature.neg}}</td>
           </tr>
         </table>
       </div>
