@@ -3,29 +3,57 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <table class="table vendors">
-        <colgroup>
-          <col style="width:15%"/>
-          <col style="width:14%"/>
-          <col style="width:14%"/>
-          <col style="width:14%"/>
-          <col style="width:14%"/>
-          <col style="width:50px"/>
-          <col style="width:50px"/>
-        </colgroup>
-        <tr ng-repeat="category in categories">
-          <td>{{category.name}}</td>
-          <td ng-repeat="vendor in category.vendors" class="vendor-row" ng-class="{selected: vendor.selected}">
-            <div ng-click="toggleVendor(category, vendor)">
-              {{vendor.name}}
-            </div>
-          </td>
-          <td><a class="btn btn-default" href="">Other</a></td>
-          <td><a class="btn btn-default" href="">None</a></td>
-        </tr>
-      </table>
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>Enter your company name and we will look you up:</h2>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
 
-      <pre>{{selections | json}}</pre>
+      <div class="mt30 clearfix">
+        <h2 class="mt30">Select the tools that you use...</h2>
+        <table class="table vendors">
+          <colgroup>
+            <col style="width:15%"/>
+            <col style="width:14%"/>
+            <col style="width:14%"/>
+            <col style="width:14%"/>
+            <col style="width:14%"/>
+            <col style="width:100px"/>
+            <col style="width:100px"/>
+          </colgroup>
+
+          <tr ng-repeat="category in categories">
+            <td>{{category.name}}</td>
+            <td ng-repeat="a in range(MAX_COLUMNS) track by $index" class="vendor-row" ng-class="{selected: category.vendors[$index].selected}">
+              <div ng-click="toggleVendor(category, category.vendors[$index])">
+                <div ng-if="!category.vendors[$index].image" ng-bind="category.vendors[$index].name"></div>
+                <img ng-if="category.vendors[$index].image" ng-src="{{category.vendors[$index].image}}" alt=""/>
+              </div>
+            </td>
+            <td>
+              <a ng-if="!other[$index]"
+                 class="btn btn-default"
+                 href
+                 ng-click="other[$index] = !other[$index]">
+                Other
+              </a>
+
+              <div ng-if="other[$index]">
+                <form ng-submit="submitNewVendor(category, v[$index]);  other[$index] = false">
+                  <input type="text" ng-model="v[$index]" />
+                </form>
+              </div>
+            </td>
+            <td><button type="button" class="btn btn-default" ng-click="selectNone(category)">None</button></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -39,7 +67,8 @@
     <div class="row">
       <div class="grade">
         <span class="align-super">Your Grade is</span>
-        <span class="actual-grade">{{grade || "B"}}</span>
+        <span class="actual-grade">{{grade}}</span>
+        <div ng-if="grade">{{grade_text}}</div>
       </div>
     </div>
     <div class="row">
