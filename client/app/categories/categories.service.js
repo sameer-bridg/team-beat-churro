@@ -96,11 +96,10 @@ angular.module('teamChurroApp')
           neg: "POS software will give you access to all of your customer transaction data."},
         { id: "roi", name: "ROI Reports on Marketing Campaigns", weight: 2,
           pos: "You can connect each of your marketing campaigns to a real sales result.",
-          neg: "Real-time ROI reporting would allow you to connect each campaign a real sales result."} 
+          neg: "Real-time ROI reporting would allow you to connect each campaign a real sales result."}
     ];
 
     var defaultSelections = [
-      {category:'data_insights', vendor: 'TODO'},
       {category:'email', vendor: 'fishbowl'},
       {category:'loyalty', vendor: 'paytronix'},
       {category:'pos', vendor: 'aloha'}
